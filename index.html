@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Computers Networking </title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Times New Roman";
+  background: #3b4a6b; 
+  color: white;
+ background-image:url('pe.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #0b1d3d;
+            color: white;
+            margin: 0;
+            font-family: Times New Roman;
+        }
+
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+/* Rotating Globe */
+.globe {
+  font-size: 60px;
+  display: inline-block;
+  animation: spin 12s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+header h1 {
+  font-size: 50px;
+  margin: 10px 0;
+}
+header h3 {
+  font-size: 20px;
+  color: #3a00cc;
+}
+
+/* NAVIGATION */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+}
+nav div {
+  padding: 22px;
+  width: 220px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  transition: 0.3s;
+}
+
+/* Navigation colors */
+nav div:nth-child(1) { background: #ff6b6b; }
+nav div:nth-child(2) { background: #4ecdc4; }
+nav div:nth-child(3) { background: #ffa502; }
+nav div:nth-child(4) { background: #1e90ff; }
+nav div:nth-child(5) { background: #2ed573; }
+nav div:nth-child(6) { background: #e84393; }
+nav div:nth-child(7) { background: #ff9f43; }
+nav div:hover { transform: scale(1.08); }
+
+/* PAGES */
+section {
+  display: none;
+  padding: 30px;
+}
+.active { display: block; }
+
+.pageTitle {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.back {
+  background:Orange;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+/* COMBINED CONTENT AREA */
+.content {
+  color: #0f172a;
+  padding: 40px;
+  border-radius: 12px;
+  min-height: 600px;
+  width: 90%;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow: auto;
+}
+
+#intro .content {
+  background-color: #e0f7fa; /* Light Blue */
+}
+#remote .content {
+  background-color:#e0f7fa; /* Light Blue */
+}
+
+#protocols .content {
+  background-color: #FDFBF4; /* Light Blue */
+}
+
+#social  .content {
+  background-color:#F5E8D8; /* Light Blue */
+}
+#zoom .content {
+  background-color:#D9E9CF; /* Light Blue */
+}
+
+/* Exception: Keeps the Members section white */
+#members .content {
+  background: white !important;
+  border: 1px solid #ddd;
+}
+
+.content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+  display: block;
+  border: 2px solid #94a3b8;
+}
+
+.content h2, .content h3 { 
+  color: #1e1b4b; 
+  border-bottom: 2px solid #1e1b4b;
+  padding-bottom: 5px;
+  margin-top: 30px;
+}
+
+.content ul { 
+  margin-left: 20px; 
+}
+
+
+/* ADD THIS NEW CSS BELOW */
+.members-container{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.member-box{
+width:150px;
+height:180px;
+border-radius:12px;
+padding:10px;
+text-align:center;
+color:white;
+}
+
+.member-box img{
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:8px;
+}
+
+.member-box h3{
+margin:5px 0;
+font-size:16px;
+}
+
+.header {
+  padding: 40px;
+  text-align: center;
+}
+
+.header h1 {
+  color: white;          /* main heading in white */
+  margin: 0;
+  font-size:45px;
+}
+
+.header h3{
+  color: white;          /* subheading in white */
+  margin: 40px 0 0;
+  font-size:25px;
+  font-family: Arial, sans-serif;  /* font style */
+}
+
+  
+
+</style>
+
+<script>
+function showPage(id) {
+  let pages = document.querySelectorAll("section");
+  pages.forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function previewImage(input) {
+  const file = input.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = input.parentElement.querySelector('.preview');
+      img.src = e.target.result;
+      img.style.display = 'block';
+      input.remove(); // remove file input once image is loaded
+    }
+    reader.readAsDataURL(file);
+  }
+}
+</script>
+
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="header">
+  <h1>Computer Networking </h1>
+  <h3> Basics And Concepts </h3> 
+
+
+
+</header>
+
+
+<!-- HOME PAGE -->
+<section id="home" class="active">
+  <nav>
+    <div onclick="showPage('intro')">Telecommunication And Media</div>
+    <div onclick="showPage('remote')">Connector And Networking Devices</div>
+    <div onclick="showPage('protocols')">Topologies And Networks</div>
+    <div onclick="showPage('social')">Network Architecture And IP Addressing</div>
+    <div onclick="showPage('zoom')">Intranet,Internet,Extranet</div>
+    <div onclick="showPage('members')">Members</div>
+  </nav>
+</section>
+
+<!-- INTRODUCTION -->
+<section id="intro">
+  <button class="back" onclick="showPage('home')">⬅Back</button>
+  <h2 class="pageTitle">Introduction</h2>
+  <div class="content">
+
+<h1>Computer Network</h1>
+
+<p>
+A computer network is a collection of interconnected devices that share resources and information. 
+Networks enable seamless communication between users, allowing people to exchange data, send messages, 
+and access shared resources such as printers, storage devices, and internet connections. These networks 
+make it possible for individuals and organizations to work efficiently by sharing information quickly 
+and securely. Computer networks also provide global connectivity that spans across cities, countries, 
+and continents, making it possible to communicate instantly from anywhere in the world. From simple 
+home setups to highly complex enterprise infrastructures, computer networks form the backbone of modern 
+digital communication systems and support services such as email, video conferencing, online learning, 
+cloud computing, and e-commerce platforms.
+</p>
+
+<h1>Telecommunication</h1>
+<img src="t.jpeg">
+
+<p>
+Telecommunication is communication over distance using electronic means. It has evolved dramatically 
+throughout history, improving the speed, reliability, and efficiency of communication systems. Early 
+forms of telecommunication were limited, but modern systems allow real-time global interaction.
+</p>
+
+<ul>
+<li>Telegraph – The first long-distance electronic communication system that used electrical signals to send coded messages over wires, marking the beginning of modern communication technology.</li>
+<li>Telephone – Introduced voice transmission, allowing people to speak with each other instantly across long distances, which revolutionized personal and business communication.</li>
+<li>Radio – Enabled wireless communication by transmitting audio signals through the air, making it possible to broadcast information to a large audience.</li>
+<li>Digital Communication – Modern communication systems that use computers and the internet to transmit data, including text, audio, and video, at very high speeds.</li>
+</ul>
+
+<p>
+Today, telecommunication connects people and systems globally using electronic signals, enabling fast, 
+efficient, and reliable communication across the world.
+</p>
+
+<h2>Examples of Telecommunication</h2>
+<ul>
+<li>Telephones (landline and mobile) – Used for voice calls, messaging, and internet access, forming an essential part of daily communication.</li>
+<li>Radio communication – Used for broadcasting music, news, and emergency information to a wide audience.</li>
+<li>Television broadcasting – Transmits audio and video content for entertainment and information.</li>
+<li>Internet communication – Includes websites, emails, social media, and online services.</li>
+<li>Video conferencing – Allows face-to-face communication over long distances using internet technology.</li>
+<li>Email and instant messaging – Provide quick and efficient text-based communication.</li>
+<li>Satellite communication – Enables communication over long distances, including remote and rural areas.</li>
+<li>Fax machines – Used to send printed documents electronically through telephone lines.</li>
+</ul>
+
+<h2>Broadband and Its Types</h2>
+
+<h3>DSL (Digital Subscriber Line)</h3>
+<p>
+DSL uses existing telephone lines to provide high-speed internet access. It is widely available and 
+cost-effective, making it a common choice for households. However, its speed decreases as the distance 
+between the user and the service provider increases.
+</p>
+
+<h3>Cable</h3>
+<p>
+Cable internet uses coaxial cables originally designed for television services. It provides faster speeds 
+than DSL and can support multiple services simultaneously, such as television and internet access. However, 
+performance may be affected by network congestion during peak usage times.
+</p>
+
+<h3>Fiber Optic</h3>
+<p>
+Fiber optic communication uses light signals transmitted through thin strands of glass or plastic fibers. 
+It is the fastest and most reliable type of internet connection, offering extremely high speeds and minimal 
+signal loss even over long distances.
+</p>
+
+<h2>Advantages of Broadband</h2>
+<ul>
+<li>Provides high-speed internet access, allowing users to download large files quickly, stream high-quality videos without interruption, and enjoy smooth online gaming experiences.</li>
+<li>Always-on connectivity ensures that users remain connected to the internet at all times without the need to dial up a connection.</li>
+<li>Supports multiple users and devices simultaneously, making it ideal for homes, schools, and businesses.</li>
+<li>Suitable for advanced applications such as video conferencing, cloud computing, and large data transfers that require stable and reliable connections.</li>
+</ul>
+
+<h2>Disadvantages of Broadband</h2>
+<ul>
+<li>Can be expensive compared to traditional dial-up connections, especially for high-speed plans with advanced features.</li>
+<li>Not available in all areas, particularly in rural and remote regions where infrastructure is limited.</li>
+<li>Internet speed may vary depending on factors such as location, network congestion, and distance from the service provider.</li>
+<li>Some broadband services have data usage limits, which may result in additional charges or reduced speeds after exceeding the limit.</li>
+</ul>
+
+<h2>Bandwidth</h2>
+<p>
+Bandwidth is the maximum data transfer rate of a network connection and is measured in bits per second (bps), 
+Megabits per second (Mbps), or Gigabits per second (Gbps). It determines how much data can be transmitted at 
+one time. A higher bandwidth allows more data to flow simultaneously, resulting in faster downloads, smoother 
+streaming, and better performance for applications that require large amounts of data.
+</p>
+
+<h2>Throughput vs Bandwidth</h2>
+<ul>
+<li><b>Bandwidth:</b> Refers to the theoretical maximum data transfer capacity of a network, representing how much data could be transmitted under ideal conditions.</li>
+<li><b>Throughput:</b> Refers to the actual amount of data successfully transmitted in real-world conditions, which is usually lower due to factors such as network congestion, latency, and data loss.</li>
+</ul>
+
+<h2>Mobile Networks: 3G, 4G, 5G</h2>
+<ul>
+<li>3G – Offers speeds up to 2 Mbps, enabling basic internet browsing, email communication, and video calling.</li>
+<li>4G – Provides speeds up to 100 Mbps, supporting high-definition video streaming, online gaming, and advanced mobile applications.</li>
+<li>5G – Delivers speeds up to 10 Gbps with ultra-low latency, supporting modern technologies such as IoT devices, smart cities, and autonomous vehicles.</li>
+</ul>
+
+<h2>Advantages of 5G</h2>
+<ul>
+<li>Extremely high speed allows faster downloads, high-quality streaming, and improved user experience.</li>
+<li>Ultra-low latency enables real-time communication, which is important for applications like remote surgery and autonomous driving.</li>
+<li>Supports a large number of connected devices simultaneously, making it ideal for smart environments and IoT systems.</li>
+<li>Improves network efficiency and reliability, especially in crowded urban areas.</li>
+</ul>
+
+<h2>Disadvantages of 5G</h2>
+<ul>
+<li>Requires expensive infrastructure development, including installation of many small towers and advanced equipment.</li>
+<li>Limited coverage, especially in rural and remote areas where deployment is slow.</li>
+<li>Requires compatible devices, meaning users may need to upgrade their smartphones or equipment.</li>
+<li>High-frequency signals have shorter range and can be blocked by buildings, trees, and other obstacles.</li>
+</ul>
+
+<h2>Data Packets</h2>
+<p>
+Data packets are small units into which large amounts of data are divided before being transmitted over a network. 
+Each packet contains part of the original message along with information such as source address, destination address, 
+and sequence number. These packets travel independently across the network and are reassembled at the destination 
+to recreate the original data accurately.
+</p>
+
+<h2>Frequency in Communication</h2>
+<p>
+Frequency refers to the number of times a signal repeats in one second and is measured in Hertz (Hz). It plays an 
+important role in communication systems, as higher frequencies allow faster data transmission but have shorter range, 
+while lower frequencies can travel longer distances but carry less data.
+</p>
+
+<h2>Communication Modes</h2>
+<ul>
+<li>Simplex – Communication takes place in only one direction, such as television broadcasting where signals are sent but not received back.</li>
+<li>Half Duplex – Communication occurs in both directions but not at the same time, such as in walkie-talkies.</li>
+<li>Full Duplex – Communication occurs in both directions simultaneously, such as in telephone conversations.</li>
+</ul>
+
+<h2>Communication Components</h2>
+<ul>
+<li>Sender – The source that sends the message.</li>
+<li>Receiver – The destination that receives the message.</li>
+<li>Message – The information being transmitted.</li>
+<li>Medium – The channel through which the message travels.</li>
+<li>Protocol – The set of rules that govern communication.</li>
+</ul>
+
+<h2>Optical Fibre</h2>
+<img src="op.jpeg">
+
+<p>
+Optical fibre technology uses light signals to transmit data through thin strands of glass or plastic. It provides 
+very high-speed communication and is widely used in modern telecommunication networks.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Provides extremely high speed and bandwidth, making it suitable for modern high-demand applications.</li>
+<li>Capable of transmitting data over long distances with minimal signal loss.</li>
+<li>Immune to electromagnetic interference, ensuring reliable communication.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Expensive to install and maintain compared to traditional cables.</li>
+<li>Fragile and requires careful handling during installation.</li>
+</ul>
+
+<h2>Twisted Pair Cable</h2>
+<p>
+Twisted pair cable consists of twisted wires used in networks and telephone lines. It is cheap and easy to use, 
+but has lower speed and is affected by interference.
+</p>
+
+
+<h3>Advantages</h3>
+<ul>
+<li>Low cost and widely available, making it suitable for basic networking needs.</li>
+<li>Easy to install and maintain.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Limited bandwidth and slower data transmission speed.</li>
+<li>Susceptible to electromagnetic interference.</li>
+</ul>
+
+<h2>Cat6 Cable</h2>
+<p>
+Cat6 cable is a high-speed network cable used in wired connections. It provides fast and reliable data transfer, 
+but it is more expensive and has limited distance.
+</p>
+<img src="cat.jpeg">
+
+<h3>Advantages</h3>
+<ul>
+<li>Supports high-speed data transmission suitable for modern networks.</li>
+<li>More reliable and has better performance compared to older cables.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>More expensive than older cable types.</li>
+<li>Limited transmission distance compared to fiber optics.</li>
+</ul>
+
+<h2>WiFi</h2>
+<p>
+WiFi is a wireless technology that provides internet access without cables. It offers high speed and supports 
+multiple devices, but signals can be affected by obstacles and may have security risks.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Provides wireless connectivity, allowing users to connect without physical cables.</li>
+<li>Convenient and easy to set up in homes, schools, and offices.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Security risks if the network is not properly protected.</li>
+<li>Signal strength may weaken due to interference and obstacles.</li>
+</ul>
+
+<h2>Bluetooth</h2>
+<p>
+Bluetooth is a short-range wireless technology used to connect devices like phones, headphones, and speakers. 
+It is easy to use and consumes low power, but it has limited range and slower speed compared to WiFi.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Consumes low power, making it suitable for small devices.</li>
+<li>Easy to connect and widely used for short-range communication.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Limited range of communication.</li>
+<li>Slower data transfer compared to WiFi.</li>
+</ul>
+
+<h2>RFID Technology</h2>
+<p>
+RFID (Radio Frequency Identification) technology uses radio waves to identify and track objects automatically 
+without requiring direct contact.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Enables fast and efficient tracking of goods and assets.</li>
+<li>Does not require physical contact or line of sight.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>High implementation cost.</li>
+<li>Potential privacy and security concerns.</li>
+</ul>
+
+<h2>Satellite Communication</h2>
+<p>
+Satellite communication uses satellites to transmit signals over long distances. It is useful in remote areas, 
+but it is expensive and may have signal delays.
+</p>
+
+<img src="sat.jpeg">
+
+<h3>Advantages</h3>
+<ul>
+<li>Provides communication over large geographical areas, including remote and inaccessible regions.</li>
+<li>Supports global broadcasting, navigation, and weather monitoring systems.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>High cost of installation and maintenance.</li>
+<li>Signal delay due to long distance between satellite and Earth.</li>
+</ul>
+
+
+
+
+     </div>
+</section>
+
+<!-- REMOTE LOGIN -->
+<section id="remote">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <h2 class="pageTitle">Connectors And Devices</h2>
+  <div class="content">
+
+<h1>NETWORK CONNECTORS</h1>
+
+<h2>Definition</h2>
+<p>A connector is a device that connects network cables and devices to facilitate the flow of information through the cables.</p>
+
+<h2>Types of Connectors</h2>
+<ul>
+    <li><b>RJ45:</b> Connector for Ethernet connection in networking using twisted pair cables</li>
+    <li><b>BNC (Bayonet Neill Concelman):</b> Coaxial cable connector</li>
+    <li><b>ST (Straight Tip):</b> Fiber optic connector with twist-lock mechanism</li>
+    <li><b>SC (Subscriber Connector):</b> Push-pull type connector for fiber optics</li>
+    <li><b>LC (Lucent Connector):</b> Small sized fiber optic connector</li>
+    <li><b>USB Connector:</b> Used for connecting peripherals and transferring data</li>
+    <li><b>HDMI:</b> Transmits digital audio and video content</li>
+</ul>
+
+<h2>RJ45 Connector</h2>
+<img src="rj.jpeg" width="200">
+
+<ul>
+    <li>Used in Ethernet for connecting computers, routers, and switches</li>
+    <li>Uses twisted pair cables with 8 pins (8P8C)</li>
+</ul>
+
+<h3>Advantages</h3>
+<ul>
+    <li>Easily installable and commonly used</li>
+    <li>Enables fast data flow</li>
+    <li>Affordable</li>
+    <li>Standardized and universal</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+    <li>Distance limited to about 100 m</li>
+    <li>Subject to interference</li>
+    <li>Not secure like fiber optics</li>
+    <li>Performance decreases over long distance</li>
+</ul>
+
+<h2>Media Converter</h2>
+<img src="m.jpeg"width="200">
+
+<p>Allows conversion from one media type to another in networking.</p>
+
+<h3>Advantages</h3>
+<ul>
+    <li>Long distance data transfer possible</li>
+    <li>Reduces signal loss</li>
+    <li>Versatile</li>
+    <li>Scalable</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+    <li>High cost</li>
+    <li>Needs power supply</li>
+    <li>Complex installation</li>
+    <li>Maintenance required</li>
+</ul>
+
+<h1>NETWORKING DEVICES</h1>
+
+<h2>Definition</h2>
+<p>Networking devices are hardware components used to build and manage a network.</p>
+
+<h2>Types of Networking Devices</h2>
+
+<h3>Repeater</h3>
+<ul>
+    <li>Regenerates and amplifies signals</li>
+    <li>Extends network distance</li>
+    <li>Physical layer device</li>
+</ul>
+
+<h3>Hub</h3>
+<ul>
+    <li>Connects multiple devices</li>
+    <li>Broadcasts data to all devices</li>
+    <li>Causes network congestion</li>
+</ul>
+
+<h3>Switch</h3>
+<ul>
+    <li>Sends data to specific device using MAC address</li>
+    <li>Reduces traffic</li>
+    <li>Efficient performance</li>
+</ul>
+
+<h3>Bridge</h3>
+<ul>
+    <li>Connects two network segments</li>
+    <li>Filters traffic</li>
+    <li>Improves performance</li>
+</ul>
+
+<h3>Router</h3>
+<img src="r.jpeg" width="200">
+
+<ul>
+    <li>Connects different networks</li>
+    <li>Uses IP address for routing</li>
+    <li>Provides security</li>
+    <li>Works at Network Layer</li>
+</ul>
+  
+  </div>
+</section>
+
+<!-- PROTOCOLS -->
+<section id="protocols">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <h2 class="pageTitle">Topologies</h2>
+  <div class="content">
+
+<h1>Introduction</h1>
+<p>
+A computer network connects two or more computers to share data and resources. It helps in communication 
+between devices and allows users to exchange information easily. Networks are organized in different 
+structures called topologies, which define how devices are connected. They are also classified based on 
+coverage area, such as small personal networks to large global networks.
+</p>
+
+<hr>
+
+<h1>Network Topology Overview</h1>
+
+<p>
+Network topology is the physical or logical arrangement of computers in a network. It shows how devices 
+are connected and how they communicate with each other. The choice of topology affects the performance, 
+efficiency, and reliability of the network. Common types of topologies include bus, star, ring, and hybrid.
+</p>
+
+<hr>
+
+<h2>Bus Topology</h2>
+<img src="bu.png">
+
+<p>
+In bus topology, all devices are connected to a single backbone cable. Data is transmitted in both directions 
+along this cable, and only one device can send data at a time. Terminators are placed at both ends of the 
+cable to prevent signal reflection.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Easy to install and set up due to simple design.</li>
+<li>Requires less cable, making it cost-effective.</li>
+<li>Suitable for small networks.</li>
+<li>Simple structure makes it easy to understand.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>If the backbone cable fails, the entire network stops working.</li>
+<li>Performance decreases as more devices are added.</li>
+<li>Troubleshooting is difficult in case of faults.</li>
+<li>Data collision can occur when multiple devices send data at the same time.</li>
+</ul>
+
+<hr>
+
+<h2>Star Topology</h2>
+<img src="st.png">
+
+<p>
+In star topology, all devices are connected to a central hub or switch. All communication passes through 
+this central device, and each device has a separate connection. It is the most commonly used topology in 
+modern networks.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Easy to install, manage, and expand.</li>
+<li>Failure of one device does not affect the rest of the network.</li>
+<li>Easy to detect and fix faults.</li>
+<li>Provides good performance even in larger networks.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>If the central hub or switch fails, the entire network stops.</li>
+<li>Requires more cable compared to bus topology.</li>
+<li>Higher installation cost.</li>
+<li>The central device can become a bottleneck.</li>
+</ul>
+
+<hr>
+
+<h2>Ring Topology</h2>
+<img src="RI.png">
+
+<p>
+In ring topology, devices are connected in a circular loop. Data travels in one direction or sometimes 
+in both directions in a dual ring system. Each device acts as a repeater, and token passing is used to 
+avoid data collision.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>No data collision occurs due to token passing method.</li>
+<li>All devices get equal access to the network.</li>
+<li>Data transmission is orderly and organized.</li>
+<li>Performs well under heavy network load.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Failure of one device can affect the entire network.</li>
+<li>Adding or removing devices is difficult.</li>
+<li>Troubleshooting problems is complex.</li>
+<li>Slower compared to star topology.</li>
+</ul>
+
+<hr>
+
+<h2>Hybrid Topology</h2>
+<img src="Hy.png">
+
+<p>
+Hybrid topology is a combination of two or more different topologies, such as star and bus or star and ring. 
+It is commonly used in large organizations because it offers flexibility and scalability.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Highly flexible and can be expanded easily.</li>
+<li>Reliable due to combination of multiple topologies.</li>
+<li>Suitable for large and complex networks.</li>
+<li>Can be customized according to needs.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Expensive to design and maintain.</li>
+<li>Structure is complex.</li>
+<li>Requires skilled professionals.</li>
+<li>Difficult to manage and troubleshoot.</li>
+</ul>
+
+<hr>
+
+<h1>Networks Based on Coverage Overview</h1>
+
+<p>
+Networks are classified based on the geographical area they cover. Coverage defines how far the network 
+extends and determines its purpose. The main types of networks based on coverage are PAN, LAN, MAN, and WAN.
+</p>
+
+<hr>
+
+<h2>PAN (Personal Area Network)</h2>
+
+<p>
+PAN covers a very small area, usually within 1–10 meters. It is used for connecting personal devices such 
+as smartphones, laptops, and smartwatches. It is usually wireless, using technologies like Bluetooth.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Very easy to set up and use.</li>
+<li>Low cost and affordable.</li>
+<li>Portable and flexible.</li>
+<li>Convenient for personal use.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Very limited range.</li>
+<li>Low data transfer speed.</li>
+<li>Not suitable for large data sharing.</li>
+<li>Security may be weak.</li>
+</ul>
+
+<hr>
+
+<h2>LAN (Local Area Network)</h2>
+<img src="l.png">
+
+<p>
+LAN covers a small area such as a home, school, or office. It provides high-speed data transfer and is 
+managed by a single organization. It can use both wired and wireless connections.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>High-speed communication.</li>
+<li>Easy sharing of files and resources.</li>
+<li>Low maintenance cost.</li>
+<li>More secure compared to larger networks.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Limited coverage area.</li>
+<li>Installation cost can be high.</li>
+<li>Requires technical setup.</li>
+<li>Depends on central devices.</li>
+</ul>
+
+<hr>
+
+<h2>MAN (Metropolitan Area Network)</h2>
+
+<p>
+MAN covers a large area such as a city or town. It connects multiple LANs and is often used by government 
+or large organizations.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Covers a large geographical area.</li>
+<li>Faster than WAN.</li>
+<li>Useful for city-wide communication.</li>
+<li>Efficient data sharing.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Expensive to set up.</li>
+<li>Requires high maintenance.</li>
+<li>Complex network structure.</li>
+<li>Possible security issues.</li>
+</ul>
+
+<hr>
+
+<h2>WAN (Wide Area Network)</h2>
+<img src="w.jpeg">
+
+<p>
+WAN covers very large areas such as countries or continents. The Internet is the best example of a WAN. 
+It connects multiple LANs and MANs using satellites and telecommunication systems.
+</p>
+
+<h3>Advantages</h3>
+<ul>
+<li>Supports global communication.</li>
+<li>Connects distant locations.</li>
+<li>Useful for large organizations.</li>
+<li>Provides internet access.</li>
+</ul>
+
+<h3>Disadvantages</h3>
+<ul>
+<li>Slower compared to LAN.</li>
+<li>Very expensive to set up.</li>
+<li>Difficult to maintain.</li>
+<li>Higher security risks.</li>
+</ul>
+
+<hr>
+
+<h1>Conclusion</h1>
+
+<p>
+Network topologies define how devices are connected in a network, while network types define the size and 
+coverage of the network. Each topology and network type has its own advantages and disadvantages. Choosing 
+the right type helps improve performance, efficiency, and reliability of communication systems.
+</p>
+
+  
+    </div>
+</section>
+
+<!-- SOCIAL MEDIA -->
+<section id="social">
+<button class="back" onclick="showPage('home')">⬅ Back</button>
+<h2 class="pageTitle">Architecture And IP Addressing</h2>
+
+
+
+<div class="content">
+
+<h1>Network Architecture and IP Addressing </h1>
+
+<h2>1. Network Architecture</h2>
+<p>Network architecture refers to the design and structure of a computer network. It explains how computers and devices are connected and how they communicate with each other.</p>
+
+<h3>Types of Network Architecture</h3>
+
+<h3>Client-Server Architecture</h3>
+<p>In this model, one main computer called the server provides services, and other computers called clients request services from it.</p>
+
+<img src="c.png" width="300">
+
+<h4>Advantages</h4>
+<ul>
+<li>Centralized data management makes control easy</li>
+<li>High level of security due to centralized system</li>
+<li>Easy to backup important data</li>
+<li>Efficient performance in large networks</li>
+<li>Easy to update software from server side</li>
+</ul>
+
+<h4>Disadvantages</h4>
+<ul>
+<li>High installation and maintenance cost</li>
+<li>If server fails, the whole network stops working</li>
+<li>Requires skilled administrators</li>
+<li>Heavy load on the server in large networks</li>
+<li>Dependence on a single system (server dependency)</li>
+</ul>
+
+
+<h3>Peer-to-Peer Architecture</h3>
+<p>In this model, all computers are equal and can share data directly without a central server.</p>
+
+<img src= "p.png""width="300">
+
+
+<h4>Advantages</h4>
+<ul>
+<li>Low cost setup, no server required</li>
+<li>Easy to install and configure</li>
+<li>Each computer acts as both client and server</li>
+<li>No central dependency</li>
+<li>Good for small networks</li>
+</ul>
+
+<h4>Disadvantages</h4>
+<ul>
+<li>Less security compared to client-server model</li>
+<li>Difficult to manage in large networks</li>
+<li>No centralized backup system</li>
+<li>Performance becomes slow when many devices are connected</li>
+<li>Data sharing control is weak</li>
+</ul>
+
+<h2> 2. Network Protocols</h2>
+<p>Network protocols are rules that help devices communicate over a network.</p>
+
+<ul>
+<li>HTTP (HyperText Transfer Protocol) Used for browsing websites</li>
+<li>HTTPS Secure version of HTTP</li>
+<li>FTP (File Transfer Protocol) Used to transfer files</li>
+<li>SMTP Used for sending emails</li>
+<li>DNS (Domain Name System) Converts domain names into IP addresses</li>
+<li>DHCP Automatically assigns IP addresses to devices</li>
+<li>TCP/IP Main protocol suite for internet communication</li>
+</ul>
+
+<h2>3. Concept of IP Addressing</h2>
+<p>IP (Internet Protocol) Addressing is a system used to uniquely identify each device on a network. It works like a digital home address for computers and devices.</p>
+
+<p>Every device must have an IP address to communicate. It ensures that data sent over a network reaches the correct destination.</p>
+
+<p>IP addressing operates at the Network Layer (Layer 3) of the OSI model.</p>
+
+<h3>Functions of IP Addressing</h3>
+<ul>
+<li>Device identification</li>
+<li>Location addressing</li>
+<li>Routing of data packets</li>
+<li>Communication between networks</li>
+</ul>
+
+<h3>IPv4</h3>
+<p>IPv4 uses 32-bit addressing and is written in decimal form like 192.168.1.1. It has about 4.3 billion addresses.</p>
+
+
+<h3>IPv6</h3>
+<p>IPv6 uses 128-bit addressing and is written in hexadecimal form like 2001:0db8:85a3:0000:0000:8a2e:0370:7334.</p>
+
+<img src="ip.png" width="300">
+
+<h2> 4. Network Commands</h2>
+
+<ul>
+<li>PING Checks connectivity between devices</li>
+<li>IPCONFIG Shows IP address, subnet mask, and gateway</li>
+<li>TRACERT Shows path taken by data packets</li>
+<li>NSLOOKUP Finds IP address of a domain</li>
+</ul>
+
+<h3>Command Summary Table</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+<th>Syntax</th>
+</tr>
+
+<tr>
+<td>PING</td>
+<td>Check connectivity between devices</td>
+<td>ping google.com</td>
+</tr>
+
+<tr>
+<td>IPCONFIG</td>
+<td>Show network configuration</td>
+<td>ipconfig /all</td>
+</tr>
+
+<tr>
+<td>TRACERT</td>
+<td>Show route of data packets</td>
+<td>tracert google.com</td>
+</tr>
+
+<tr>
+<td>NSLOOKUP</td>
+<td>Find IP address of domain</td>
+<td>nslookup google.com</td>
+</tr>
+</table>
+
+<h2>. 5. Summary</h2>
+<p>Network architecture defines how devices connect. IP addressing identifies devices. Network protocols help communication. Commands are used for troubleshooting networks.</p>
+
+</body>
+</html>
+
+    </div>
+</section>
+
+<!-- ZOOM & BLOGS -->
+<section id="zoom">
+  <button class="back" onclick="showPage('home')">⬅ Back</button>
+  <h2 class="pageTitle">Internet,Intranet,Extranet</h2>
+  <div class="content">
+
+<h1>Internet</h1>
+<img src="im.jpeg">
+
+<p>
+The Internet is a worldwide network that connects millions of computers, smartphones, and other digital 
+devices. It allows users to communicate, share information, and access different services from anywhere 
+in the world. The Internet works using a system of networks connected through cables, satellites, and 
+wireless signals. It is widely used in education, business, entertainment, and communication.
+</p>
+
+<h3>Advantages of Internet</h3>
+<ul>
+<li>Fast communication using email, chat, and video calls.</li>
+<li>Access to a large amount of information and knowledge.</li>
+<li>Supports online learning and education.</li>
+<li>Provides online services like shopping and banking.</li>
+<li>Connects people globally.</li>
+</ul>
+
+<h3>Disadvantages of Internet</h3>
+<ul>
+<li>Risk of cybercrime and hacking.</li>
+<li>Can cause addiction and time wastage.</li>
+<li>Spread of false information.</li>
+<li>Privacy and security issues.</li>
+<li>Exposure to harmful content.</li>
+</ul>
+
+<hr>
+
+<h1>Intranet</h1>
+<img src="int.jpeg">
+
+<p>
+An Intranet is a private network used within an organization such as a school or company. It uses 
+internet technology but is only accessible to authorized users. It helps employees share information, 
+communicate, and work together efficiently in a secure environment.
+</p>
+
+<h3>Advantages of Intranet</h3>
+<ul>
+<li>Improves internal communication.</li>
+<li>Provides better data security.</li>
+<li>Easy sharing of files and documents.</li>
+<li>Increases productivity.</li>
+<li>Supports teamwork.</li>
+</ul>
+
+<h3>Disadvantages of Intranet</h3>
+<ul>
+<li>Limited access within organization only.</li>
+<li>Costly to set up and maintain.</li>
+<li>Requires proper management.</li>
+<li>Needs user training.</li>
+<li>Network failure affects work.</li>
+</ul>
+
+<hr>
+
+<h1>Extranet</h1>
+<img src="ex.jpeg" >
+
+<p>
+An Extranet is an extension of an intranet that allows limited access to external users such as customers, 
+suppliers, or business partners. It helps organizations share selected information securely and improve 
+business communication and collaboration.
+</p>
+
+<h3>Advantages of Extranet</h3>
+<ul>
+<li>Improves communication with external users.</li>
+<li>Secure data sharing.</li>
+<li>Supports business collaboration.</li>
+<li>Saves time and cost.</li>
+<li>Provides controlled access.</li>
+</ul>
+
+<h3>Disadvantages of Extranet</h3>
+<ul>
+<li>Security risks if not managed properly.</li>
+<li>Expensive setup and maintenance.</li>
+<li>Complex access control.</li>
+<li>Depends on internet connection.</li>
+<li>Requires authentication systems.</li>
+</ul>
+
+<hr>
+
+<h1>Internet vs Intranet vs Extranet (Diagram)</h1>
+<img src="j.jpeg">
+
+<p>
+The Internet is a public network accessible to everyone worldwide. An Intranet is a private network used 
+within an organization, while an Extranet allows limited access to external users. The main difference 
+lies in access control, security, and usage purpose.
+</p>
+
+
+</div>
+</section>
+
+
+<section id="members">
+<button class="back" onclick="showPage('home')">⬅ Back</button>
+<h2 class="pageTitle">Members</h2>
+
+<div class="members-container">
+
+<div class="member-box" style="background:#ff6b6b;">
+<img src="sa.png">
+<h3>Sanjok Silwal (C) </h3>
+</div>
+
+<div class="member-box" style="background:#4ecdc4;">
+<img src="kap.png">
+<h3>Kalpit Pandey </h3>
+</div>
+
+<div class="member-box" style="background:#ffa502;">
+<img src="an.png">
+<h3>Ankit Raj Pathak</h3>
+</div>
+
+<div class="member-box" style="background:#1e90ff;">
+<img src="ab.png">
+<h3>Abhilekh Adhikari</h3>
+</div>
+
+<div class="member-box" style="background:#2ed573;">
+<img src="pab.png">
+<h3>Pabit Regmi</h3>
+</div>
+
+</div>
+</section>
+</body>
+</html> 
